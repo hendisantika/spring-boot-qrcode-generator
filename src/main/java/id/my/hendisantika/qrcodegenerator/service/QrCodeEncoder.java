@@ -5,6 +5,7 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeEmailParser;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeEvent;
@@ -20,18 +21,21 @@ import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrlParser;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeVCard;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeVCardParser;
+import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Base64Utils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.UUID;
+
+import static org.springframework.util.Base64Utils.encodeToString;
 
 /**
  * Created by IntelliJ IDEA.
@@ -110,7 +114,7 @@ public class QrCodeEncoder {
             File myFile = File.createTempFile(fileName, "." + fileType);
             ImageIO.write(image, fileType, myFile);
             byte[] bytes = FileUtils.readFileToByteArray(myFile);
-            imageText = "data:image/png;base64," + Base64Utils.encodeToString(bytes);
+            imageText = "data:image/png;base64," + encodeToString(bytes);
             result.setImage(imageText);
         } catch (WriterException | IOException e) {
             String msg = "Processing QR code failed.";
@@ -120,5 +124,14 @@ public class QrCodeEncoder {
         log.info("QR Code for text {} was successfully created.", textToBeEncoded);
         result.setSuccessMessage("QR Code was successfully created.");
         return result;
+    }
+
+    @NotNull
+    private Map<EncodeHintType, Object> createHintMap() {
+        Map<EncodeHintType, Object> hintMap = new EnumMap<>(EncodeHintType.class);
+        hintMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+        hintMap.put(EncodeHintType.MARGIN, 1);
+        hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+        return hintMap;
     }
 }

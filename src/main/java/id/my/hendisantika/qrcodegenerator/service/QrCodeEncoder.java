@@ -1,5 +1,8 @@
 package id.my.hendisantika.qrcodegenerator.service;
 
+import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeUrlParser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -16,4 +19,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class QrCodeEncoder {
+    public QrCodeProcessingResult generateQrCodeUrl(QrCodeUrl qrCodeUrl) {
+        String extracted = new QrCodeUrlParser(qrCodeUrl).parse();
+        return this.generateImageAsBase64(extracted);
+    }
 }

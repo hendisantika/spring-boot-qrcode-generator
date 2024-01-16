@@ -1,6 +1,7 @@
 package id.my.hendisantika.qrcodegenerator.controller;
 
 import id.my.hendisantika.qrcodegenerator.config.ApplicationProperties;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.service.QrCodeEncoder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,5 +46,12 @@ public class QrCodeController {
     public String index(Model model) {
         addCommonModelAttributes(model);
         return PAGE_INDEX;
+    }
+
+    @GetMapping("/qr-code-url")
+    public String qrCodeUrl(Model model) {
+        addCommonModelAttributes(model);
+        model.addAttribute("qrCodeUrl", new QrCodeUrl());
+        return PAGE_QR_CODE_URL;
     }
 }

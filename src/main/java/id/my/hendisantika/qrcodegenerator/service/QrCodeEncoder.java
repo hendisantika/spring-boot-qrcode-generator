@@ -13,6 +13,8 @@ import id.my.hendisantika.qrcodegenerator.model.QrCodeSms;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeSmsParser;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrlParser;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeVCard;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeVCardParser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -56,6 +58,11 @@ public class QrCodeEncoder {
 
     public QrCodeProcessingResult generateQrCodeFacetime(QrCodeFacetime qrCodeFacetime) {
         String extracted = new QrCodeFacetimeParser(qrCodeFacetime).parse();
+        return this.generateImageAsBase64(extracted);
+    }
+
+    public QrCodeProcessingResult generateQrCodeVCard(QrCodeVCard qrCodeVCard) {
+        String extracted = new QrCodeVCardParser(qrCodeVCard).parse();
         return this.generateImageAsBase64(extracted);
     }
 }

@@ -5,6 +5,8 @@ import id.my.hendisantika.qrcodegenerator.service.QrCodeEncoder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Created by IntelliJ IDEA.
@@ -39,4 +41,9 @@ public class QrCodeController {
     private final ApplicationProperties applicationProperties;
     private final QrCodeEncoder qrCodeEncoder;
 
+    @GetMapping(value = {"/", "/index"})
+    public String index(Model model) {
+        addCommonModelAttributes(model);
+        return PAGE_INDEX;
+    }
 }

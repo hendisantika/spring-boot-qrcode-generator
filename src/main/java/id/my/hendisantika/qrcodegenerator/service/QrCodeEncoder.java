@@ -3,6 +3,8 @@ package id.my.hendisantika.qrcodegenerator.service;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeEmailParser;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeSms;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeSmsParser;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrlParser;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,11 @@ public class QrCodeEncoder {
 
     public QrCodeProcessingResult generateQrCodeEmail(QrCodeEmail qrCodeEmail) {
         String extracted = new QrCodeEmailParser(qrCodeEmail).parse();
+        return this.generateImageAsBase64(extracted);
+    }
+
+    public QrCodeProcessingResult generateQrCodeSms(QrCodeSms qrCodeSms) {
+        String extracted = new QrCodeSmsParser(qrCodeSms).parse();
         return this.generateImageAsBase64(extracted);
     }
 }

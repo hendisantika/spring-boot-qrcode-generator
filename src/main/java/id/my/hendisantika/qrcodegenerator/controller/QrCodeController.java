@@ -103,4 +103,18 @@ public class QrCodeController {
         }
         return PAGE_QR_CODE_PHONE;
     }
+
+    @PostMapping("/process/facetime")
+    public String processFacetime(Model model,
+                                  @Valid @ModelAttribute("qrCodeFacetime") QrCodeFacetime qrCodeFacetime,
+                                  BindingResult bindingResult) {
+        addCommonModelAttributes(model);
+        if (!bindingResult.hasErrors()) {
+            log.info("generate QR Code for Facetime number {}", qrCodeFacetime.getFacetimeToBeEncoded());
+            QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeFacetime(qrCodeFacetime);
+            this.addResultModelAttributes(model, result);
+            return PAGE_RESULT;
+        }
+        return PAGE_QR_CODE_FACETIME;
+    }
 }

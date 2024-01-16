@@ -4,6 +4,8 @@ import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeEmailParser;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeEvent;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeEventParser;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeFacetime;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeFacetimeParser;
 import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodePhoneParser;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
@@ -49,6 +51,11 @@ public class QrCodeEncoder {
 
     public QrCodeProcessingResult generateQrCodeEvent(QrCodeEvent qrCodeEvent) {
         String extracted = new QrCodeEventParser(qrCodeEvent).parse();
+        return this.generateImageAsBase64(extracted);
+    }
+
+    public QrCodeProcessingResult generateQrCodeFacetime(QrCodeFacetime qrCodeFacetime) {
+        String extracted = new QrCodeFacetimeParser(qrCodeFacetime).parse();
         return this.generateImageAsBase64(extracted);
     }
 }

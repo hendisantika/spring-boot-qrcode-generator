@@ -126,4 +126,18 @@ public class QrCodeController {
         return PAGE_QR_CODE_EMAIL;
     }
 
+    @PostMapping("/process/email")
+    public String processEmail(Model model,
+                               @Valid @ModelAttribute("qrCodeEmail") QrCodeEmail qrCodeEmail,
+                               BindingResult bindingResult) {
+        addCommonModelAttributes(model);
+        if (!bindingResult.hasErrors()) {
+            log.info("generate QR Code for Email {}", qrCodeEmail.getEmailToBeEncoded());
+            QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeEmail(qrCodeEmail);
+            this.addResultModelAttributes(model, result);
+            return PAGE_RESULT;
+        }
+        return PAGE_QR_CODE_EMAIL;
+    }
+
 }

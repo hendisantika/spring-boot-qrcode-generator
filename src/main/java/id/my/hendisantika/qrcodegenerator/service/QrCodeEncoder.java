@@ -1,5 +1,7 @@
 package id.my.hendisantika.qrcodegenerator.service;
 
+import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeEmailParser;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrlParser;
@@ -21,6 +23,11 @@ import org.springframework.stereotype.Component;
 public class QrCodeEncoder {
     public QrCodeProcessingResult generateQrCodeUrl(QrCodeUrl qrCodeUrl) {
         String extracted = new QrCodeUrlParser(qrCodeUrl).parse();
+        return this.generateImageAsBase64(extracted);
+    }
+
+    public QrCodeProcessingResult generateQrCodeEmail(QrCodeEmail qrCodeEmail) {
+        String extracted = new QrCodeEmailParser(qrCodeEmail).parse();
         return this.generateImageAsBase64(extracted);
     }
 }

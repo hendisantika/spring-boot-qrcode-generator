@@ -1,6 +1,7 @@
 package id.my.hendisantika.qrcodegenerator.controller;
 
 import id.my.hendisantika.qrcodegenerator.config.ApplicationProperties;
+import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.service.QrCodeEncoder;
@@ -72,5 +73,12 @@ public class QrCodeController {
             return PAGE_RESULT;
         }
         return PAGE_QR_CODE_URL;
+    }
+
+    @GetMapping("/qr-code-phone")
+    public String qrCodePhone(Model model) {
+        addCommonModelAttributes(model);
+        model.addAttribute("qrCodePhone", new QrCodePhone());
+        return PAGE_QR_CODE_PHONE;
     }
 }

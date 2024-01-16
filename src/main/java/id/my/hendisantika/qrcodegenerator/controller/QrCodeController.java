@@ -89,4 +89,18 @@ public class QrCodeController {
         model.addAttribute("qrCodeFacetime", new QrCodeFacetime());
         return PAGE_QR_CODE_FACETIME;
     }
+
+    @PostMapping("/process/phone")
+    public String processPhone(Model model,
+                               @Valid @ModelAttribute("qrCodePhone") QrCodePhone qrCodePhone,
+                               BindingResult bindingResult) {
+        addCommonModelAttributes(model);
+        if (!bindingResult.hasErrors()) {
+            log.info("generate QR Code for Phone number {}", qrCodePhone.getPhoneToBeEncoded());
+            QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodePhone(qrCodePhone);
+            this.addResultModelAttributes(model, result);
+            return PAGE_RESULT;
+        }
+        return PAGE_QR_CODE_PHONE;
+    }
 }

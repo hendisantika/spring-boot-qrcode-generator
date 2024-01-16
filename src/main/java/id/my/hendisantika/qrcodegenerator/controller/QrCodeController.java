@@ -1,6 +1,7 @@
 package id.my.hendisantika.qrcodegenerator.controller;
 
 import id.my.hendisantika.qrcodegenerator.config.ApplicationProperties;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeFacetime;
 import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
@@ -80,5 +81,12 @@ public class QrCodeController {
         addCommonModelAttributes(model);
         model.addAttribute("qrCodePhone", new QrCodePhone());
         return PAGE_QR_CODE_PHONE;
+    }
+
+    @GetMapping("/qr-code-facetime")
+    public String qrCodeFacetime(Model model) {
+        addCommonModelAttributes(model);
+        model.addAttribute("qrCodeFacetime", new QrCodeFacetime());
+        return PAGE_QR_CODE_FACETIME;
     }
 }

@@ -5,6 +5,7 @@ import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeFacetime;
 import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeSms;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.service.QrCodeEncoder;
 import jakarta.validation.Valid;
@@ -138,6 +139,13 @@ public class QrCodeController {
             return PAGE_RESULT;
         }
         return PAGE_QR_CODE_EMAIL;
+    }
+
+    @GetMapping("/qr-code-sms")
+    public String qrCodeSms(Model model) {
+        addCommonModelAttributes(model);
+        model.addAttribute("qrCodeSms", new QrCodeSms());
+        return PAGE_QR_CODE_SMS;
     }
 
 }

@@ -1,13 +1,18 @@
 package id.my.hendisantika.qrcodegenerator.controller;
 
 import id.my.hendisantika.qrcodegenerator.config.ApplicationProperties;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.service.QrCodeEncoder;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * Created by IntelliJ IDEA.
@@ -52,6 +57,20 @@ public class QrCodeController {
     public String qrCodeUrl(Model model) {
         addCommonModelAttributes(model);
         model.addAttribute("qrCodeUrl", new QrCodeUrl());
+        return PAGE_QR_CODE_URL;
+    }
+
+    @PostMapping("/process/url")
+    public String processUrl(Model model,
+                             @Valid @ModelAttribute("qrCodeUrl") QrCodeUrl qrCodeUrl,
+                             BindingResult bindingResult) {
+        addCommonModelAttributes(model);
+        if (!bindingResult.hasErrors()) {
+            log.info("generate QR Code for Url {}", qrCodeUrl.getUrlToBeEncoded());
+            QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeUrl(qrCodeUrl);
+            this.addResultModelAttributes(model, result);
+            return PAGE_RESULT;
+        }
         return PAGE_QR_CODE_URL;
     }
 }

@@ -1,6 +1,7 @@
 package id.my.hendisantika.qrcodegenerator.controller;
 
 import id.my.hendisantika.qrcodegenerator.config.ApplicationProperties;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeFacetime;
 import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
@@ -117,4 +118,12 @@ public class QrCodeController {
         }
         return PAGE_QR_CODE_FACETIME;
     }
+
+    @GetMapping("/qr-code-email")
+    public String qrCodeEmail(Model model) {
+        addCommonModelAttributes(model);
+        model.addAttribute("qrCodeEmail", new QrCodeEmail());
+        return PAGE_QR_CODE_EMAIL;
+    }
+
 }

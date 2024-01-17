@@ -64,4 +64,21 @@ class QrCodeDecoderTest {
         assertNotNull(actual);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void thatDecodingQrCodeVCardPasses() throws Exception {
+        String expected = "BEGIN:VCARD\n" +
+                "VERSION:4.0\n" +
+                "N:Norris;Chuck;;;\n" +
+                "FN:Chuck Norris\n" +
+                "TITLE:Mr. Roundhousekick\n" +
+                "ORG:My Organisation\n" +
+                "END:VCARD";
+        ClassPathResource resource = new ClassPathResource("decodeQrCodeVCard.png");
+        File qrCodeFile = resource.getFile();
+        String actual = this.qrCodeDecoder.decodeQrCodeFile(qrCodeFile);
+        assertNotNull(actual);
+        assertEquals(expected, actual);
+    }
+
 }

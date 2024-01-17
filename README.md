@@ -9,10 +9,16 @@
 
 ### Docker Way
 
+Package the app
+
+```shell
+mvn clean package
+```
+
 Build Dockerfile
 
 ```shell
-docker build -t hendisantika/bmi:latest hendisantika/qrcode-generator:latest .
+docker build -t hendisantika/qrcode-generator:latest .
 ```
 
 Tag Dockerfile

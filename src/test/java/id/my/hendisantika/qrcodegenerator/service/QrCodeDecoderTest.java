@@ -44,4 +44,14 @@ class QrCodeDecoderTest {
         assertNotNull(actual);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void thatDecodingQrCodePhonePasses() throws Exception {
+        String expected = "tel:+15551234567";
+        ClassPathResource resource = new ClassPathResource("decodeQrCodePhone.png");
+        File qrCodeFile = resource.getFile();
+        String actual = this.qrCodeDecoder.decodeQrCodeFile(qrCodeFile);
+        assertNotNull(actual);
+        assertEquals(expected, actual);
+    }
 }

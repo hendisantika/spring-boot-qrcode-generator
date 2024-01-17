@@ -39,4 +39,11 @@ class QrCodePhoneTest {
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodePhone);
         assertTrue(bindingResult.hasErrors());
     }
+
+    @Test
+    public void thatQrCodePhoneIsNotValidEmpty() {
+        QrCodePhone qrCodePhone = new QrCodePhone("");
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodePhone);
+        assertTrue(bindingResult.hasErrors());
+    }
 }

@@ -81,4 +81,26 @@ class QrCodeDecoderTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void thatDecodingQrCodeVCardCompletePasses() throws Exception {
+        String expected = "BEGIN:VCARD\n" +
+                "VERSION:4.0\n" +
+                "N:Norris;Chuck;;;\n" +
+                "FN:Chuck Norris\n" +
+                "TITLE:Mr. Roundhousekick\n" +
+                "ORG:My Organisation\n" +
+                "EMAIL:chuck@norris.com\n" +
+                "EMAIL:chuck@gmail.com\n" +
+                "TEL;TYPE=WORK:+15551234567\n" +
+                "ADR;TYPE=HOME:;;42 Plantation St.;Baytown;LA;30314;USA\n" +
+                "LABEL;TYPE=HOME:42 Plantation St.\n" +
+                "Baytown,LA 30314\n" +
+                "USA\n" +
+                "END:VCARD";
+        ClassPathResource resource = new ClassPathResource("decodeQrCodeVCardComplete.png");
+        File qrCodeFile = resource.getFile();
+        String actual = this.qrCodeDecoder.decodeQrCodeFile(qrCodeFile);
+        assertNotNull(actual);
+        assertEquals(expected, actual);
+    }
 }

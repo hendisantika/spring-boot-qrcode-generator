@@ -54,4 +54,14 @@ class QrCodeDecoderTest {
         assertNotNull(actual);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void thatDecodingQrCodeUrlPasses() throws Exception {
+        String expected = "http://www.google.com";
+        ClassPathResource resource = new ClassPathResource("decodeQrCodeUrl.png");
+        File qrCodeFile = resource.getFile();
+        String actual = this.qrCodeDecoder.decodeQrCodeFile(qrCodeFile);
+        assertNotNull(actual);
+        assertEquals(expected, actual);
+    }
 }

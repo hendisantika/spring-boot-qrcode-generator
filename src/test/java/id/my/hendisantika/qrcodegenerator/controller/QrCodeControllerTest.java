@@ -3,6 +3,7 @@ package id.my.hendisantika.qrcodegenerator.controller;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
 import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeVCard;
 import id.my.hendisantika.qrcodegenerator.util.TestUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,5 +135,19 @@ class QrCodeControllerTest {
         String actual = this.qrCodeController.qrCodeEmail(model);
         assertEquals(expected, actual);
         assertNotNull(model.get("qrCodeEmail"));
+    }
+
+    @Test
+    public void thatProcessQrCodeVCardPasses() {
+        String expected = "result";
+        QrCodeVCard qrCodeVCard = new QrCodeVCard();
+        qrCodeVCard.setName("Name");
+        qrCodeVCard.setLastname("Lastname");
+        BindingAwareModelMap model = TestUtils.createModel();
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeVCard);
+        String actual = this.qrCodeController.processVCard(model, qrCodeVCard, bindingResult);
+        assertEquals(expected, actual);
+        assertNotNull(model.get("image"));
+        assertNull(model.get("qrCodeVCard"));
     }
 }

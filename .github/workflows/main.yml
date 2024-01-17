@@ -95,4 +95,5 @@ jobs:
           SERVER_USER: ${{ secrets.SERVER_USERNAME }}
         run: |
           set -e
-          ./home/deployer/qrcode/deploy.sh
+          #          ./home/deployer/qrcode/deploy.sh
+               ./deploy.sh

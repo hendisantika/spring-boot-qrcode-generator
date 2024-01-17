@@ -191,4 +191,18 @@ public class QrCodeController {
         }
         return PAGE_QR_CODE_VCARD;
     }
+
+    @PostMapping("/process/event")
+    public String processEvent(Model model,
+                               @Valid @ModelAttribute("qrCodeEvent") QrCodeEvent qrCodeEvent,
+                               BindingResult bindingResult) {
+        addCommonModelAttributes(model);
+        if (!bindingResult.hasErrors()) {
+            log.info("generate QR Code for Event {}", qrCodeEvent.getSummary());
+            QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeEvent(qrCodeEvent);
+            this.addResultModelAttributes(model, result);
+            return PAGE_RESULT;
+        }
+        return PAGE_QR_CODE_EVENT;
+    }
 }

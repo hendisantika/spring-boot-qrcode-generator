@@ -177,4 +177,18 @@ public class QrCodeController {
         model.addAttribute("qrCodeVCard", new QrCodeVCard());
         return PAGE_QR_CODE_VCARD;
     }
+
+    @PostMapping("/process/vcard")
+    public String processVCard(Model model,
+                               @Valid @ModelAttribute("qrCodeVCard") QrCodeVCard qrCodeVCard,
+                               BindingResult bindingResult) {
+        addCommonModelAttributes(model);
+        if (!bindingResult.hasErrors()) {
+            log.info("generate QR Code for VCard {}", qrCodeVCard.getName());
+            QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeVCard(qrCodeVCard);
+            this.addResultModelAttributes(model, result);
+            return PAGE_RESULT;
+        }
+        return PAGE_QR_CODE_VCARD;
+    }
 }

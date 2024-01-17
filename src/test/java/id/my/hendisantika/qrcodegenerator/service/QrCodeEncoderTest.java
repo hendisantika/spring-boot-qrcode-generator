@@ -1,6 +1,7 @@
 package id.my.hendisantika.qrcodegenerator.service;
 
 import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeEvent;
 import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
@@ -8,6 +9,8 @@ import id.my.hendisantika.qrcodegenerator.model.QrCodeVCard;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -85,5 +88,16 @@ class QrCodeEncoderTest {
         assertNotNull(result.getImage());
         assertNotNull(result.getEncodedText());
         assertNull(result.getErrorMessage());
+    }
+
+    @Test
+    void generateQrCodeEvent() {
+        QrCodeEvent qrCodeEvent = new QrCodeEvent();
+        qrCodeEvent.setLocation("Konoha");
+        qrCodeEvent.setSummary("Hokage");
+        qrCodeEvent.setEventStart(LocalDateTime.now());
+        qrCodeEvent.setEventEnd(LocalDateTime.now().plusHours(4));
+        QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeEvent(qrCodeEvent);
+        assertTrue(result.isSuccessfull());
     }
 }

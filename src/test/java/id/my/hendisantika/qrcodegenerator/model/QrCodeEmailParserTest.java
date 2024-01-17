@@ -31,4 +31,13 @@ class QrCodeEmailParserTest {
         qrCodeEmail.setSubjectToBeEncoded("Subject");
         assertEquals(new QrCodeEmailParser(qrCodeEmail).parse(), expected);
     }
+
+    @Test
+    public void thatParseEmailAndSubjectWithBlanksPasses() {
+        String expected = "mailto:email@email.com?subject=My%20Subject";
+        QrCodeEmail qrCodeEmail = new QrCodeEmail();
+        qrCodeEmail.setEmailToBeEncoded("email@email.com");
+        qrCodeEmail.setSubjectToBeEncoded("My Subject");
+        assertEquals(new QrCodeEmailParser(qrCodeEmail).parse(), expected);
+    }
 }

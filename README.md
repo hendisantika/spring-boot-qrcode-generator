@@ -38,3 +38,39 @@ Push Docker to Dockerhub
 ```shell
 docker push hendisantika/qrcode-generator:latest hendisantika/qrcode-generator:latest
 ```
+
+### Images Screenshot
+
+Home Page
+
+![Home Page](img/home.png "Home Page")
+
+QRCode
+
+![QRCode](img/qrcode1.png "QRCode")
+
+![QRCode](img/qrcode2.png "QRCode")
+
+Email
+
+![Email](img/email1.png "Email")
+
+![Email](img/email2.png "Email")
+
+Facetime
+
+![Facetime](img/facetime1.png "Facetime")
+
+![Facetime](img/facetime2.png "Facetime")
+
+Phone Number
+
+![Phone Number](img/phone1.png "Phone Number")
+
+![Phone Number](img/phone2.png "Phone Number")
+
+SMS
+
+![SMS](img/sms1.png "SMS")
+
+![SMS](img/sms2.png "SMS")

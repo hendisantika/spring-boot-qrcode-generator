@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.validation.BindingResult;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,5 +31,12 @@ class QrCodeFacetimeTest {
         qrCodeFacetime.setFacetimeToBeEncoded("+1 555 1234567");
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeFacetime);
         assertFalse(bindingResult.hasErrors());
+    }
+
+    @Test
+    public void thatQrCodeFacetimeIsNotValidNull() {
+        QrCodeFacetime qrCodeFacetime = new QrCodeFacetime();
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeFacetime);
+        assertTrue(bindingResult.hasErrors());
     }
 }

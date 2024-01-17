@@ -47,4 +47,15 @@ class QrCodeEncoderTest {
         assertNotNull(result.getEncodedText());
         assertNull(result.getErrorMessage());
     }
+
+    @Test
+    public void generateQrCodeEmailAndSubject() {
+        QrCodeEmail qrCodeEmail = new QrCodeEmail("email@email.com", "just a test");
+        QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeEmail(qrCodeEmail);
+        assertTrue(result.isSuccessfull());
+        assertNotNull(result.getSuccessMessage());
+        assertNotNull(result.getImage());
+        assertNotNull(result.getEncodedText());
+        assertNull(result.getErrorMessage());
+    }
 }

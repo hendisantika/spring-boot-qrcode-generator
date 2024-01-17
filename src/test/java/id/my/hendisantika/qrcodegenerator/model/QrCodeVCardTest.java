@@ -43,4 +43,13 @@ class QrCodeVCardTest {
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeVCard);
         assertTrue(bindingResult.hasErrors());
     }
+
+    @Test
+    public void thatQrCodeVCardIsNotValidLastNameNull() {
+        QrCodeVCard qrCodeVCard = new QrCodeVCard();
+        qrCodeVCard.setName("Chuck");
+        qrCodeVCard.setLastname(null);
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeVCard);
+        assertTrue(bindingResult.hasErrors());
+    }
 }

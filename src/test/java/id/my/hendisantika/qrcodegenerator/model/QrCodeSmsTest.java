@@ -40,4 +40,11 @@ class QrCodeSmsTest {
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeSms);
         assertTrue(bindingResult.hasErrors());
     }
+
+    @Test
+    public void thatQrCodeSmsIsNotValidEmpty() {
+        QrCodeSms qrCodeSms = new QrCodeSms("");
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeSms);
+        assertTrue(bindingResult.hasErrors());
+    }
 }

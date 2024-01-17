@@ -1,5 +1,7 @@
 package id.my.hendisantika.qrcodegenerator.util;
 
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.DataBinder;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
@@ -22,5 +24,12 @@ public class TestUtils {
         LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
         localValidatorFactoryBean.afterPropertiesSet();
         return localValidatorFactoryBean;
+    }
+
+    public static BindingResult createBindingResult(Object qrCodeModel) {
+        DataBinder dataBinder = new DataBinder(qrCodeModel);
+        dataBinder.setValidator(LOCAL_VALIDATOR_FACTORY_BEAN);
+        dataBinder.validate();
+        return dataBinder.getBindingResult();
     }
 }

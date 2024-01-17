@@ -164,4 +164,13 @@ class QrCodeControllerTest {
         assertNull(model.get("image"));
         assertNull(model.get("qrCodeVCard"));
     }
+
+    @Test
+    public void thatQrCodeVCardPasses() {
+        String expected = "qr-code-vcard";
+        BindingAwareModelMap model = TestUtils.createModel();
+        String actual = this.qrCodeController.qrCodeVCard(model);
+        assertEquals(expected, actual);
+        assertNotNull(model.get("qrCodeVCard"));
+    }
 }

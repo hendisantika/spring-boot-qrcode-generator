@@ -23,4 +23,12 @@ class QrCodeUrlTest {
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeUrl);
         assertFalse(bindingResult.hasErrors());
     }
+
+    @Test
+    public void thatQrCodeUrlIsValidSetter() {
+        QrCodeUrl qrCodeUrl = new QrCodeUrl();
+        qrCodeUrl.setUrlToBeEncoded("http://www.google.com");
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeUrl);
+        assertFalse(bindingResult.hasErrors());
+    }
 }

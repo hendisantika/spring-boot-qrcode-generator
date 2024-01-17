@@ -92,4 +92,13 @@ class QrCodeControllerTest {
         assertNull(model.get("image"));
         assertNull(model.get("qrCodePhone"));
     }
+
+    @Test
+    public void thatQrCodePhonePasses() {
+        String expected = "qr-code-phone";
+        BindingAwareModelMap model = TestUtils.createModel();
+        String actual = this.qrCodeController.qrCodePhone(model);
+        assertEquals(expected, actual);
+        assertNotNull(model.get("qrCodePhone"));
+    }
 }

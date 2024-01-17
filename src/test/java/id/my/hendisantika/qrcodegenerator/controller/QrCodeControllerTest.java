@@ -1,5 +1,6 @@
 package id.my.hendisantika.qrcodegenerator.controller;
 
+import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.util.TestUtils;
 import org.junit.jupiter.api.Test;
@@ -66,5 +67,17 @@ class QrCodeControllerTest {
         assertEquals(expected, actual);
         assertNull(model.get("image"));
         assertNull(model.get("qrCodeUrl"));
+    }
+
+    @Test
+    public void thatProcessQrCodePhonePasses() {
+        String expected = "result";
+        QrCodePhone qrCodePhone = new QrCodePhone("+15551234567");
+        BindingAwareModelMap model = TestUtils.createModel();
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodePhone);
+        String actual = this.qrCodeController.processPhone(model, qrCodePhone, bindingResult);
+        assertEquals(expected, actual);
+        assertNotNull(model.get("image"));
+        assertNull(model.get("qrCodePhone"));
     }
 }

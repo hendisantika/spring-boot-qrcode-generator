@@ -1,5 +1,6 @@
 package id.my.hendisantika.qrcodegenerator.model;
 
+import id.my.hendisantika.qrcodegenerator.util.TestUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.BindingResult;
 

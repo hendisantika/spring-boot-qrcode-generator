@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.validation.BindingResult;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,5 +32,12 @@ class QrCodeSmsTest {
         qrCodeSms.setMessageToBeEncoded("My Test");
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeSms);
         assertFalse(bindingResult.hasErrors());
+    }
+
+    @Test
+    public void thatQrCodeSmsIsNotValidNull() {
+        QrCodeSms qrCodeSms = new QrCodeSms(null);
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeSms);
+        assertTrue(bindingResult.hasErrors());
     }
 }

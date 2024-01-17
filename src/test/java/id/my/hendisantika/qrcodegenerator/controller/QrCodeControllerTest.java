@@ -127,4 +127,12 @@ class QrCodeControllerTest {
         assertNull(model.get("qrCodeEmail"));
     }
 
+    @Test
+    public void thatQrCodeEmailPasses() {
+        String expected = "qr-code-email";
+        BindingAwareModelMap model = TestUtils.createModel();
+        String actual = this.qrCodeController.qrCodeEmail(model);
+        assertEquals(expected, actual);
+        assertNotNull(model.get("qrCodeEmail"));
+    }
 }

@@ -11,6 +11,7 @@ import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeVCard;
 import id.my.hendisantika.qrcodegenerator.service.QrCodeEncoder;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -204,5 +205,10 @@ public class QrCodeController {
             return PAGE_RESULT;
         }
         return PAGE_QR_CODE_EVENT;
+    }
+
+    private void addCommonModelAttributes(@NotNull Model model) {
+        model.addAttribute("titleMessage", this.applicationProperties.getTitle());
+        model.addAttribute("appInfo", this.applicationProperties.getAppInfo());
     }
 }

@@ -39,4 +39,11 @@ class QrCodeUrlTest {
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeUrl);
         assertTrue(bindingResult.hasErrors());
     }
+
+    @Test
+    public void thatQrCodeUrlIsNotValidEmpty() {
+        QrCodeUrl qrCodeUrl = new QrCodeUrl("");
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeUrl);
+        assertTrue(bindingResult.hasErrors());
+    }
 }

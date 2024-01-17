@@ -2,6 +2,7 @@ package id.my.hendisantika.qrcodegenerator.controller;
 
 import id.my.hendisantika.qrcodegenerator.config.ApplicationProperties;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeEvent;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeFacetime;
 import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
@@ -160,5 +161,12 @@ public class QrCodeController {
             return PAGE_RESULT;
         }
         return PAGE_QR_CODE_SMS;
+    }
+
+    @GetMapping("/qr-code-event")
+    public String qrCodeEvent(Model model) {
+        addCommonModelAttributes(model);
+        model.addAttribute("qrCodeEvent", new QrCodeEvent());
+        return PAGE_QR_CODE_EVENT;
     }
 }

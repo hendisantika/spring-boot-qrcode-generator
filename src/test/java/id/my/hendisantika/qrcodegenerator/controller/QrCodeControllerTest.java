@@ -4,8 +4,10 @@ import id.my.hendisantika.qrcodegenerator.util.TestUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.validation.support.BindingAwareModelMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Created by IntelliJ IDEA.
@@ -28,5 +30,14 @@ class QrCodeControllerTest {
         String expected = "index";
         String actual = this.qrCodeController.index(TestUtils.createModel());
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void thatQrCodeUrlPasses() {
+        String expected = "qr-code-url";
+        BindingAwareModelMap model = TestUtils.createModel();
+        String actual = this.qrCodeController.qrCodeUrl(model);
+        assertEquals(expected, actual);
+        assertNotNull(model.get("qrCodeUrl"));
     }
 }

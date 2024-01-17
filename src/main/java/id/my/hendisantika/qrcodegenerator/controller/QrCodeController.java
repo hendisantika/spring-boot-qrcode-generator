@@ -148,4 +148,17 @@ public class QrCodeController {
         return PAGE_QR_CODE_SMS;
     }
 
+    @PostMapping("/process/sms")
+    public String processSms(Model model,
+                             @Valid @ModelAttribute("qrCodeSms") QrCodeSms qrCodeSms,
+                             BindingResult bindingResult) {
+        addCommonModelAttributes(model);
+        if (!bindingResult.hasErrors()) {
+            log.info("generate QR Code for Email {}", qrCodeSms.getPhoneToBeEncoded());
+            QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeSms(qrCodeSms);
+            this.addResultModelAttributes(model, result);
+            return PAGE_RESULT;
+        }
+        return PAGE_QR_CODE_SMS;
+    }
 }

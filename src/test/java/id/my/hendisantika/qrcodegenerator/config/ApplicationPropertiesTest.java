@@ -30,4 +30,11 @@ public class ApplicationPropertiesTest {
         assertNotNull(actual);
         assertTrue(StringUtils.isNotEmpty(actual));
     }
+
+    @Test
+    public void thatAppInfoIsValid() {
+        String actual = this.applicationProperties.getAppInfo();
+        assertNotNull(actual);
+        assertTrue(StringUtils.isNotEmpty(actual));
+    }
 }

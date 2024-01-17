@@ -1,5 +1,6 @@
 package id.my.hendisantika.qrcodegenerator.controller;
 
+import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
 import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.util.TestUtils;
@@ -100,5 +101,17 @@ class QrCodeControllerTest {
         String actual = this.qrCodeController.qrCodePhone(model);
         assertEquals(expected, actual);
         assertNotNull(model.get("qrCodePhone"));
+    }
+
+    @Test
+    public void thatProcessQrCodeEmailPasses() {
+        String expected = "result";
+        QrCodeEmail qrCodeEmail = new QrCodeEmail("email@email.com");
+        BindingAwareModelMap model = TestUtils.createModel();
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeEmail);
+        String actual = this.qrCodeController.processEmail(model, qrCodeEmail, bindingResult);
+        assertEquals(expected, actual);
+        assertNotNull(model.get("image"));
+        assertNull(model.get("qrCodeEmail"));
     }
 }

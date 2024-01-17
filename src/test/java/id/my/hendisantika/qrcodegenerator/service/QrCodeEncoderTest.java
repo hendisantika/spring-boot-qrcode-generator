@@ -4,6 +4,7 @@ import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
 import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeVCard;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -64,6 +65,21 @@ class QrCodeEncoderTest {
     public void generateQrCodePhone() {
         QrCodePhone qrCodePhone = new QrCodePhone("+15551234567");
         QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodePhone(qrCodePhone);
+        assertTrue(result.isSuccessfull());
+        assertNotNull(result.getSuccessMessage());
+        assertNotNull(result.getImage());
+        assertNotNull(result.getEncodedText());
+        assertNull(result.getErrorMessage());
+    }
+
+    @Test
+    public void generateQrCodeVCard() {
+        QrCodeVCard qrCodeVCard = new QrCodeVCard();
+        qrCodeVCard.setName("Chuck");
+        qrCodeVCard.setLastname("Norris");
+        qrCodeVCard.setTitle("Mr. Roundhousekick");
+        qrCodeVCard.setOrganisation("My Organisation");
+        QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeVCard(qrCodeVCard);
         assertTrue(result.isSuccessfull());
         assertNotNull(result.getSuccessMessage());
         assertNotNull(result.getImage());

@@ -23,4 +23,12 @@ class QrCodeFacetimeTest {
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeFacetime);
         assertFalse(bindingResult.hasErrors());
     }
+
+    @Test
+    public void thatQrCodeFacetimeIsValidSetter() {
+        QrCodeFacetime qrCodeFacetime = new QrCodeFacetime();
+        qrCodeFacetime.setFacetimeToBeEncoded("+1 555 1234567");
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeFacetime);
+        assertFalse(bindingResult.hasErrors());
+    }
 }

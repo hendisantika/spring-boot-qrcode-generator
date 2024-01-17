@@ -211,4 +211,14 @@ public class QrCodeController {
         model.addAttribute("titleMessage", this.applicationProperties.getTitle());
         model.addAttribute("appInfo", this.applicationProperties.getAppInfo());
     }
+
+    private void addResultModelAttributes(@NotNull Model model, @NotNull QrCodeProcessingResult result) {
+        model.addAttribute(QR_CODE, result.getImage());
+        model.addAttribute(TEXT_TO_BE_ENCODED, result.getEncodedText());
+        if (result.isSuccessfull()) {
+            model.addAttribute(SUCCESS_MESSAGE, result.getSuccessMessage());
+        } else {
+            model.addAttribute(ERROR_MESSAGE, result.getErrorMessage());
+        }
+    }
 }

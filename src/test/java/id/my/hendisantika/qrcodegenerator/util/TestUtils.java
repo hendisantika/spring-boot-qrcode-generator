@@ -3,6 +3,7 @@ package id.my.hendisantika.qrcodegenerator.util;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.support.BindingAwareModelMap;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,5 +32,9 @@ public class TestUtils {
         dataBinder.setValidator(LOCAL_VALIDATOR_FACTORY_BEAN);
         dataBinder.validate();
         return dataBinder.getBindingResult();
+    }
+
+    public static BindingAwareModelMap createModel() {
+        return new BindingAwareModelMap();
     }
 }

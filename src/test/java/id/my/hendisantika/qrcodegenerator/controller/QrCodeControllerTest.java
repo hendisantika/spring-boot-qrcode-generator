@@ -1,7 +1,11 @@
 package id.my.hendisantika.qrcodegenerator.controller;
 
+import id.my.hendisantika.qrcodegenerator.util.TestUtils;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,4 +22,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 class QrCodeControllerTest {
     @Autowired
     private QrCodeController qrCodeController;
+
+    @Test
+    public void thatIndexPasses() {
+        String expected = "index";
+        String actual = this.qrCodeController.index(TestUtils.createModel());
+        assertEquals(expected, actual);
+    }
 }

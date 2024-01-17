@@ -39,4 +39,11 @@ class QrCodeEmailTest {
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeEmail);
         assertTrue(bindingResult.hasErrors());
     }
+
+    @Test
+    public void thatQrCodeMailIsNotValidEmpty() {
+        QrCodeEmail qrCodeEmail = new QrCodeEmail("");
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeEmail);
+        assertTrue(bindingResult.hasErrors());
+    }
 }

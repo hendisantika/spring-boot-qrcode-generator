@@ -95,5 +95,6 @@ jobs:
           SERVER_USER: ${{ secrets.SERVER_USERNAME }}
         run: |
           set -e
+          cd $GITHUB_WORKSPACE
           #          ./home/deployer/qrcode/deploy.sh
-               ./deploy.sh
+          ./deploy.sh

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.validation.BindingResult;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,5 +25,13 @@ class QrCodeVCardTest {
         qrCodeVCard.setLastname("Norris");
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeVCard);
         assertFalse(bindingResult.hasErrors());
+    }
+
+    @Test
+    public void thatQrCodeVCardIsNotValidNameNull() {
+        QrCodeVCard qrCodeVCard = new QrCodeVCard();
+        qrCodeVCard.setLastname("Norris");
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeVCard);
+        assertTrue(bindingResult.hasErrors());
     }
 }

@@ -8,6 +8,7 @@ import id.my.hendisantika.qrcodegenerator.model.QrCodePhone;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeSms;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeVCard;
 import id.my.hendisantika.qrcodegenerator.service.QrCodeEncoder;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -168,5 +169,12 @@ public class QrCodeController {
         addCommonModelAttributes(model);
         model.addAttribute("qrCodeEvent", new QrCodeEvent());
         return PAGE_QR_CODE_EVENT;
+    }
+
+    @GetMapping("/qr-code-vcard")
+    public String qrCodeVCard(Model model) {
+        addCommonModelAttributes(model);
+        model.addAttribute("qrCodeVCard", new QrCodeVCard());
+        return PAGE_QR_CODE_VCARD;
     }
 }

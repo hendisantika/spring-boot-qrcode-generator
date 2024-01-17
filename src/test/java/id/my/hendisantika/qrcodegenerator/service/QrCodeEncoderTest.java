@@ -1,7 +1,14 @@
 package id.my.hendisantika.qrcodegenerator.service;
 
+import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
+import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,4 +24,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 class QrCodeEncoderTest {
     @Autowired
     private QrCodeEncoder qrCodeEncoder;
+
+    @Test
+    public void generateQrCodeUrl() {
+        QrCodeUrl qrCodeUrl = new QrCodeUrl("http://www.google.com");
+        QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeUrl(qrCodeUrl);
+        assertTrue(result.isSuccessfull());
+        assertNotNull(result.getSuccessMessage());
+        assertNotNull(result.getImage());
+        assertNotNull(result.getEncodedText());
+        assertNull(result.getErrorMessage());
+    }
 }

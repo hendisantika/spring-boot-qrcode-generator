@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.validation.BindingResult;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,5 +31,12 @@ class QrCodeUrlTest {
         qrCodeUrl.setUrlToBeEncoded("http://www.google.com");
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeUrl);
         assertFalse(bindingResult.hasErrors());
+    }
+
+    @Test
+    public void thatQrCodeUrlIsNotValidNull() {
+        QrCodeUrl qrCodeUrl = new QrCodeUrl(null);
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeUrl);
+        assertTrue(bindingResult.hasErrors());
     }
 }

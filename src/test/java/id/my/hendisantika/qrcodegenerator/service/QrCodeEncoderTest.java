@@ -1,5 +1,6 @@
 package id.my.hendisantika.qrcodegenerator.service;
 
+import id.my.hendisantika.qrcodegenerator.model.QrCodeEmail;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeProcessingResult;
 import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,17 @@ class QrCodeEncoderTest {
     public void generateQrCodeUrl() {
         QrCodeUrl qrCodeUrl = new QrCodeUrl("http://www.google.com");
         QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeUrl(qrCodeUrl);
+        assertTrue(result.isSuccessfull());
+        assertNotNull(result.getSuccessMessage());
+        assertNotNull(result.getImage());
+        assertNotNull(result.getEncodedText());
+        assertNull(result.getErrorMessage());
+    }
+
+    @Test
+    public void generateQrCodeEmail() {
+        QrCodeEmail qrCodeEmail = new QrCodeEmail("email@email.com");
+        QrCodeProcessingResult result = this.qrCodeEncoder.generateQrCodeEmail(qrCodeEmail);
         assertTrue(result.isSuccessfull());
         assertNotNull(result.getSuccessMessage());
         assertNotNull(result.getImage());

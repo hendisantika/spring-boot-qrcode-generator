@@ -23,4 +23,13 @@ class QrCodeSmsTest {
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeSms);
         assertFalse(bindingResult.hasErrors());
     }
+
+    @Test
+    public void thatQrCodeSmsIsValidSetter() {
+        QrCodeSms qrCodeSms = new QrCodeSms();
+        qrCodeSms.setPhoneToBeEncoded("+49123456789");
+        qrCodeSms.setMessageToBeEncoded("My Test");
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeSms);
+        assertFalse(bindingResult.hasErrors());
+    }
 }

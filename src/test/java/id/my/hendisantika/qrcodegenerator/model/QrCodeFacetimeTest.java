@@ -39,4 +39,11 @@ class QrCodeFacetimeTest {
         BindingResult bindingResult = TestUtils.createBindingResult(qrCodeFacetime);
         assertTrue(bindingResult.hasErrors());
     }
+
+    @Test
+    public void thatQrCodeFacetimeIsNotValidEmpty() {
+        QrCodeFacetime qrCodeFacetime = new QrCodeFacetime("");
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeFacetime);
+        assertTrue(bindingResult.hasErrors());
+    }
 }

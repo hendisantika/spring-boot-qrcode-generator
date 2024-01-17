@@ -55,4 +55,16 @@ class QrCodeControllerTest {
         assertNotNull(model.get("image"));
         assertNull(model.get("qrCodeUrl"));
     }
+
+    @Test
+    public void thatProcessQrCodeUrlFails() {
+        String expected = "qr-code-url";
+        QrCodeUrl qrCodeUrl = new QrCodeUrl("");
+        BindingAwareModelMap model = TestUtils.createModel();
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeUrl);
+        String actual = this.qrCodeController.processUrl(model, qrCodeUrl, bindingResult);
+        assertEquals(expected, actual);
+        assertNull(model.get("image"));
+        assertNull(model.get("qrCodeUrl"));
+    }
 }

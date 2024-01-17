@@ -150,4 +150,18 @@ class QrCodeControllerTest {
         assertNotNull(model.get("image"));
         assertNull(model.get("qrCodeVCard"));
     }
+
+    @Test
+    public void thatProcessQrCodeVCardFails() {
+        String expected = "qr-code-vcard";
+        QrCodeVCard qrCodeVCard = new QrCodeVCard();
+        qrCodeVCard.setName("");
+        qrCodeVCard.setLastname("");
+        BindingAwareModelMap model = TestUtils.createModel();
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeVCard);
+        String actual = this.qrCodeController.processVCard(model, qrCodeVCard, bindingResult);
+        assertEquals(expected, actual);
+        assertNull(model.get("image"));
+        assertNull(model.get("qrCodeVCard"));
+    }
 }

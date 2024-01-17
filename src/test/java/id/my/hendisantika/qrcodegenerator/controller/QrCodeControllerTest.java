@@ -1,13 +1,16 @@
 package id.my.hendisantika.qrcodegenerator.controller;
 
+import id.my.hendisantika.qrcodegenerator.model.QrCodeUrl;
 import id.my.hendisantika.qrcodegenerator.util.TestUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.support.BindingAwareModelMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Created by IntelliJ IDEA.
@@ -39,5 +42,17 @@ class QrCodeControllerTest {
         String actual = this.qrCodeController.qrCodeUrl(model);
         assertEquals(expected, actual);
         assertNotNull(model.get("qrCodeUrl"));
+    }
+
+    @Test
+    public void thatProcessQrCodeUrlPasses() {
+        String expected = "result";
+        QrCodeUrl qrCodeUrl = new QrCodeUrl("http://www.google.com");
+        BindingAwareModelMap model = TestUtils.createModel();
+        BindingResult bindingResult = TestUtils.createBindingResult(qrCodeUrl);
+        String actual = this.qrCodeController.processUrl(model, qrCodeUrl, bindingResult);
+        assertEquals(expected, actual);
+        assertNotNull(model.get("image"));
+        assertNull(model.get("qrCodeUrl"));
     }
 }

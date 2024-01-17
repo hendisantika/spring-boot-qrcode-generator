@@ -17,4 +17,10 @@ public class TestUtils {
 
     private TestUtils() {
     }
+
+    private static LocalValidatorFactoryBean createLocalValidatorFactoryBean() {
+        LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
+        localValidatorFactoryBean.afterPropertiesSet();
+        return localValidatorFactoryBean;
+    }
 }

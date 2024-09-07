@@ -38,10 +38,6 @@
     <!--    </distributionManagement>-->
 
     <dependencies>
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter</artifactId>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -117,20 +113,7 @@
             <version>1.5.8</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
-
-    <!--    <dependencyManagement>-->
-    <!--        <dependencies>-->
-    <!--            <dependency>-->
-    <!--                <groupId>org.springframework.boot</groupId>-->
-    <!--                <artifactId>spring-boot-starter-parent</artifactId>-->
-    <!--                <version>3.2.1</version>-->
-    <!--                <scope>import</scope>-->
-    <!--                <type>pom</type>-->
-    <!--            </dependency>-->
-    <!--        </dependencies>-->
-    <!--    </dependencyManagement>-->
 
     <build>
         <plugins>

@@ -99,12 +99,13 @@ jobs:
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+          IMAGE_NAME: qrcode-generator
           IMAGE_TAG: ${{ github.run_number }}
           CONTAINER_NAME: qrcode-generator
-
           APP_SERVER_PORT: ${{ vars.APP_SERVER_PORT_DEV }}
         run: |
           echo CONTAINER_NAME=$CONTAINER_NAME >> .env
+          echo IMAGE_NAME=$IMAGE_NAME >> .env
           echo IMAGE_TAG=$IMAGE_TAG >> .env
           echo APP_SERVER_PORT=$APP_SERVER_PORT >> .env
 

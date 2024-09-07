@@ -1,19 +1,24 @@
 #!/bin/bash
-
-start=$(date +"%s")
-
 ssh -p ${SERVER_PORT} ${SERVER_USER}@${SERVER_HOST} -i key.txt -t -t -o StrictHostKeyChecking=no << 'ENDSSH'
-docker pull hendisantika/qrcode-generator:latest
+cd ~/qrcode
+cat .env
+set +a
+source .env
+start=$(date +"%s")
+#IMAGE_NAME=qrcode-generator
+docker pull hendisantika/$IMAGE_NAME:$IMAGE_TAG
 
 CONTAINER_NAME=qrcode-generator
 if [ "$(docker ps -qa -f name=$CONTAINER_NAME)" ]; then
     if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
         echo "Container is running -> stopping it..."
+        docker system prune -af
         docker stop $CONTAINER_NAME;
+        docker rm $CONTAINER_NAME
     fi
 fi
 
-docker run -d --rm -p 8083:8083 --name $CONTAINER_NAME hendisantika/qrcode-generator:latest
+docker run -d --rm -p $APP_PORT:$APP_PORT --name $CONTAINER_NAME hendisantika/$IMAGE_NAME:$IMAGE_TAG
 
 exit
 ENDSSH

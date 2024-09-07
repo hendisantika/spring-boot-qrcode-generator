@@ -18,7 +18,7 @@ if [ "$(docker ps -qa -f name=$CONTAINER_NAME)" ]; then
     fi
 fi
 
-docker run -d --rm -p $APP_PORT:$APP_PORT --name $CONTAINER_NAME hendisantika/$IMAGE_NAME:$IMAGE_TAG
+docker run -d --rm -p $APP_SERVER_PORT:$APP_SERVER_PORT --name $CONTAINER_NAME hendisantika/$IMAGE_NAME:$IMAGE_TAG
 
 exit
 ENDSSH

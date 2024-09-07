@@ -6,12 +6,16 @@ on:
       - 'src/**'
       - '.github/workflows/main.yml'
       - 'pom/xml'
+      - 'Dockerfile'
+      - 'deploh.sh'
   push:
     branches: [ main ]
     paths:
       - 'src/**'
       - '.github/workflows/main.yml'
       - 'pom/xml'
+      - 'Dockerfile'
+      - 'deploh.sh'
 
 jobs:
   project-build:

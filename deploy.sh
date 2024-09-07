@@ -13,7 +13,7 @@ if [ "$(docker ps -qa -f name=$CONTAINER_NAME)" ]; then
     fi
 fi
 
-docker run -d --rm -p 8081:8081 --name $CONTAINER_NAME hendisantika/qrcode-generator:latest
+docker run -d --rm -p 8083:8083 --name $CONTAINER_NAME hendisantika/qrcode-generator:latest
 
 exit
 ENDSSH

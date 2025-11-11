@@ -18,7 +18,7 @@
         <webjars-locator.version>0.52</webjars-locator.version>
         <font-awesome.version>7.0.1</font-awesome.version>
         <bootstrap.version>5.3.8</bootstrap.version>
-        <zxing.version>3.5.3</zxing.version>
+        <zxing.version>3.5.4</zxing.version>
         <commons-io.version>2.21.0</commons-io.version>
         <jetbrains-annotations.version>23.0.0</jetbrains-annotations.version>
         <project.scm.id>github</project.scm.id>

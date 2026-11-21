@@ -31,11 +31,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.UUID;
-
-import static org.springframework.util.Base64Utils.encodeToString;
 
 /**
  * Created by IntelliJ IDEA.
@@ -114,7 +113,7 @@ public class QrCodeEncoder {
             File myFile = File.createTempFile(fileName, "." + fileType);
             ImageIO.write(image, fileType, myFile);
             byte[] bytes = FileUtils.readFileToByteArray(myFile);
-            imageText = "data:image/png;base64," + encodeToString(bytes);
+            imageText = "data:image/png;base64," + Base64.getEncoder().encodeToString(bytes);
             result.setImage(imageText);
         } catch (WriterException | IOException e) {
             String msg = "Processing QR code failed.";

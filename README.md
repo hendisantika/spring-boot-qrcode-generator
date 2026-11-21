@@ -81,7 +81,9 @@ GitHub Actions workflow ([`.github/workflows/main.yml`](.github/workflows/main.y
    pull request to `main`. Test reports are uploaded as artifacts.
 2. **Build & Push Docker Image** — on push to `main`, builds the image with Buildx and pushes
    `hendisantika/qrcode-generator:<run_number>` and `:latest` to Docker Hub.
-3. **Deploy** — copies the `.env` file to the server and runs [`deploy.sh`](deploy.sh) over SSH.
+3. **Deploy** — copies the `.env` file to the server and runs [`deploy.sh`](deploy.sh) over SSH. This job is
+   **disabled by default** and only runs when the repository variable `ENABLE_DEPLOY` is set to `true`
+   (`gh variable set ENABLE_DEPLOY --body true`).
 
 Required repository secrets: `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, `SERVER_HOST`, `SERVER_PORT`, `SERVER_USERNAME`,
 `SERVER_KEY`, and variable `APP_SERVER_PORT_DEV`.
